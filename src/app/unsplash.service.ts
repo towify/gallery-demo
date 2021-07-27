@@ -1,18 +1,21 @@
-import {Injectable} from "@angular/core";
+import { Injectable } from '@angular/core';
+import {Observable, of} from "rxjs";
+import {catchError, tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
-import {Observable, of, throwError} from 'rxjs';
-import {catchError, retry, tap} from 'rxjs/operators';
 import {UnsplashPhoto} from "./unsplash.photo";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UnsplashService {
-  private unsplashUrl = 'https://api.unsplash.com/'
+
+  private unsplashUrl:string = 'https://api.unsplash.com/photos/?client_id=7nb3UsOsIQ8j-rRsSe8FdNrKXGY7B_GorEWoPBpGazU'
 
   constructor(private http: HttpClient) {
   }
 
-  listPhotos(): Observable<UnsplashPhoto[]> {
-    return this.http.get<UnsplashPhoto[]>(this.unsplashUrl)
+  listPhotos(pageIndex: number): Observable<UnsplashPhoto[]> {
+    return this.http.get<UnsplashPhoto[]>(this.unsplashUrl, {params: {page: pageIndex, per_page: 20}})
       .pipe(
         tap(_ => console.log('fetched unsplash photos')),
         catchError(this.handleError<UnsplashPhoto[]>('listPhotos', []))
@@ -32,8 +35,4 @@ export class UnsplashService {
       return of(result as T);
     };
   }
-
-
 }
-
-
