@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UnsplashPhoto } from '../../unsplash.photo';
 import { UnsplashService } from '../../unsplash.service';
 
@@ -14,7 +7,7 @@ import { UnsplashService } from '../../unsplash.service';
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css'],
 })
-export class GalleryComponent implements OnInit, OnChanges {
+export class GalleryComponent implements OnInit {
   @ViewChild('photoList')
   photoList?: ElementRef;
 
@@ -36,10 +29,6 @@ export class GalleryComponent implements OnInit, OnChanges {
   #hasNextPage = true;
 
   constructor(private readonly unsplashService: UnsplashService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    throw new Error(`Method not implemented.${changes}`);
-  }
 
   ngOnInit() {
     this.listPhotos();
