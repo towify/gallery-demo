@@ -29,7 +29,7 @@ export class GalleryComponent implements OnInit, OnChanges {
 
   #hasNextPage = true;
 
-  constructor(private unsplashService: UnsplashService) {
+  constructor(private readonly unsplashService: UnsplashService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {

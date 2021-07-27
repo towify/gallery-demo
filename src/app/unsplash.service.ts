@@ -9,9 +9,9 @@ import {UnsplashPhoto} from './unsplash.photo';
 })
 export class UnsplashService {
 
-  private unsplashUrl:string = 'https://api.unsplash.com/photos/?client_id=7nb3UsOsIQ8j-rRsSe8FdNrKXGY7B_GorEWoPBpGazU'
+  private readonly unsplashUrl:string = 'https://api.unsplash.com/photos/?client_id=7nb3UsOsIQ8j-rRsSe8FdNrKXGY7B_GorEWoPBpGazU'
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
   }
 
   listPhotos(pageIndex: number): Observable<UnsplashPhoto[]> {
