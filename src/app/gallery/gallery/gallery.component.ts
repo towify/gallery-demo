@@ -1,14 +1,20 @@
-import {Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {UnsplashPhoto} from '../../unsplash.photo';
-import {UnsplashService} from '../../unsplash.service';
+import {
+  Component,
+  ElementRef,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { UnsplashPhoto } from '../../unsplash.photo';
+import { UnsplashService } from '../../unsplash.service';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css']
+  styleUrls: ['./gallery.component.css'],
 })
 export class GalleryComponent implements OnInit, OnChanges {
-
   @ViewChild('photoList')
   photoList?: ElementRef;
 
@@ -24,16 +30,15 @@ export class GalleryComponent implements OnInit, OnChanges {
     maxWidth: 300,
     height: 180,
     gapWidth: 10,
-    containerWidth: 0
+    containerWidth: 0,
   };
 
   #hasNextPage = true;
 
-  constructor(private readonly unsplashService: UnsplashService) {
-  }
+  constructor(private readonly unsplashService: UnsplashService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    throw new Error(`Method not implemented.${  changes}`);
+    throw new Error(`Method not implemented.${changes}`);
   }
 
   ngOnInit() {
@@ -47,13 +52,12 @@ export class GalleryComponent implements OnInit, OnChanges {
 
   listPhotos(): void {
     this.isLoading = true;
-    this.unsplashService.listPhotos(this.pageIndex)
-      .subscribe(photos => {
-        if (photos.length === 0) this.#hasNextPage = false;
-        this.photos = this.photos.concat(photos);
-        this.isLoading = false;
-        this.refresh();
-      });
+    this.unsplashService.listPhotos(this.pageIndex).subscribe((photos) => {
+      if (photos.length === 0) this.#hasNextPage = false;
+      this.photos = this.photos.concat(photos);
+      this.isLoading = false;
+      this.refresh();
+    });
   }
 
   public onResize() {
@@ -67,25 +71,28 @@ export class GalleryComponent implements OnInit, OnChanges {
     this.refresh();
   }
 
-  async onScroll(params: { scrollHeight: number; scrollTop: number; clientHeight: number }) {
+  async onScroll(params: {
+    scrollHeight: number;
+    scrollTop: number;
+    clientHeight: number;
+  }) {
     if (
       !this.#hasNextPage ||
       this.isLoading ||
       this.rowPhotos.length * (this.sizeInfo.height + this.sizeInfo.gapWidth) <
-      params.clientHeight
+        params.clientHeight
     )
       return;
 
-    const isBottom = params.scrollHeight <= params.scrollTop + params.clientHeight + 10;
+    const isBottom =
+      params.scrollHeight <= params.scrollTop + params.clientHeight + 10;
     if (isBottom) {
       this.pageIndex += 1;
       this.listPhotos();
     }
   }
 
-  ok() {
-  }
-
+  ok() {}
 
   refresh() {
     if (!this.photos.length) return;
@@ -96,7 +103,7 @@ export class GalleryComponent implements OnInit, OnChanges {
 
     this.sizeInfo.containerWidth = this.getCurrentContainerWidth();
 
-    this.photos.forEach(item => {
+    this.photos.forEach((item) => {
       if (item.width === 0) {
         displayWidth = 150;
         item.height = 150;
@@ -113,13 +120,15 @@ export class GalleryComponent implements OnInit, OnChanges {
       item.displayWidth = displayWidth;
       currentRowWidth += displayWidth + this.sizeInfo.gapWidth;
       currentRowItems.push(item);
-      if (currentRowWidth + this.sizeInfo.minWidth > this.sizeInfo.containerWidth) {
+      if (
+        currentRowWidth + this.sizeInfo.minWidth >
+        this.sizeInfo.containerWidth
+      ) {
         rowPhotos.push(currentRowItems);
         currentRowItems = [];
         currentRowWidth = 0;
       }
     });
     this.rowPhotos = rowPhotos;
-
   }
 }

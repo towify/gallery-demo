@@ -1,6 +1,3 @@
-
-
-
 .header {
   width: 100%;
 }
@@ -10,15 +7,13 @@ ul {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, max-content));
-  column-gap: 20px}
-
+  column-gap: 20px;
+}
 
 li:hover {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
 }
-
-
 
 span {
   font-size: 11px;
@@ -32,7 +27,6 @@ span {
   font-size: 16px;
 }
 
-
 .search-input {
   width: 280px;
   height: 28px;
@@ -44,7 +38,8 @@ span {
   font-size: 20px;
   background: #ffffff;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1)}
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 .search-icon {
   height: 15px;
@@ -75,7 +70,8 @@ input {
   grid-gap: 10px;
   gap: 10px;
   height: 100%;
-  min-height: 300px}
+  min-height: 300px;
+}
 
 .page-empty-loading {
   align-self: center;
@@ -85,7 +81,8 @@ input {
 .bottom-loading-container {
   display: grid;
   width: 100%;
-  min-height: 80px;}
+  min-height: 80px;
+}
 
 towify-loading {
   align-self: center;
@@ -106,7 +103,8 @@ towify-loading {
   overflow: hidden;
   border: 3px solid #fff;
   background-color: #f8f8f8;
-  transition: border-color 0.5s;}
+  transition: border-color 0.5s;
+}
 
 img {
   width: 100%;
@@ -118,7 +116,6 @@ img {
 img:hover {
   transform: scale(1.05);
 }
-
 
 .list-item:hover {
 }
@@ -137,13 +134,13 @@ img:hover {
   justify-items: center;
   align-items: center;
   width: 100%;
-  height: 100%;}
+  height: 100%;
+}
 
 .transferring-loading {
   width: 60px;
   height: 60px;
 }
-
 
 ::ng-deep .filter-menu.mat-menu-panel {
   max-height: 300px;

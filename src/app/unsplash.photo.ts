@@ -4,7 +4,7 @@ export type UnsplashPhoto = {
   height: number;
   urls: UnsplashUrls;
   displayWidth?: number;
-}
+};
 
 export type UnsplashUrls = {
   raw: string;
@@ -12,4 +12,4 @@ export type UnsplashUrls = {
   regular: string;
   small: string;
   thumb: string;
-}
+};
