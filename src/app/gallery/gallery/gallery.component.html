@@ -1,0 +1,36 @@
+<ng-container *ngIf="!isTransferringData">
+  <mat-dialog-content
+    #content
+    (scroll)="
+      onScroll({
+        scrollHeight: content.scrollHeight,
+        scrollTop: content.scrollTop,
+        clientHeight: content.clientHeight
+      })
+    "
+  >
+    <div class="photo-list" #photoList>
+      <ng-container *ngIf="isLoading && firstLoading; else list">
+        <mat-spinner></mat-spinner>
+      </ng-container>
+      <ng-template #list>
+        <div class="list-row" *ngFor="let rowItems of rowPhotos">
+          <div class="list-item" *ngFor="let image of rowItems">
+            <img src="{{ image.urls.small }}" alt="{{ image.id }}" />
+          </div>
+        </div>
+        <div
+          class="bottom-loading-container"
+          *ngIf="isLoading && !firstLoading"
+        >
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </div>
+  </mat-dialog-content>
+  <mat-divider></mat-divider>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="ok()">Ok</button>
+  </mat-dialog-actions>
+</ng-container>
+<ng-container *ngIf="isTransferringData"> </ng-container>
