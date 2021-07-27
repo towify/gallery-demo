@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {GalleryComponent} from "./gallery/gallery/gallery.component";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog} from '@angular/material/dialog';
+import {GalleryComponent} from './gallery/gallery/gallery.component';
 
 @Component({
   selector: 'app-root',

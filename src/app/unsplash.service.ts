@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
-import {HttpClient} from "@angular/common/http";
-import {UnsplashPhoto} from "./unsplash.photo";
+import {Observable, of} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {UnsplashPhoto} from './unsplash.photo';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,9 @@ export class UnsplashService {
   listPhotos(pageIndex: number): Observable<UnsplashPhoto[]> {
     return this.http.get<UnsplashPhoto[]>(this.unsplashUrl, {params: {page: pageIndex, per_page: 20}})
       .pipe(
-        tap(_ => console.log('fetched unsplash photos')),
+        tap(_ => {
+          console.log('fetched unsplash photos');
+        }),
         catchError(this.handleError<UnsplashPhoto[]>('listPhotos', []))
       );
   }
@@ -29,7 +31,7 @@ export class UnsplashService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      //this.log(`${operation} failed: ${error.message}`);
+      console.log(operation);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

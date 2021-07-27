@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {UnsplashPhoto} from "../../unsplash.photo";
-import {UnsplashService} from "../../unsplash.service";
+import {UnsplashPhoto} from '../../unsplash.photo';
+import {UnsplashService} from '../../unsplash.service';
 
 @Component({
   selector: 'app-gallery',
@@ -26,13 +26,14 @@ export class GalleryComponent implements OnInit, OnChanges {
     gapWidth: 10,
     containerWidth: 0
   };
+
   #hasNextPage = true;
 
   constructor(private unsplashService: UnsplashService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
+    throw new Error(`Method not implemented.${  changes}`);
   }
 
   ngOnInit() {
@@ -90,7 +91,7 @@ export class GalleryComponent implements OnInit, OnChanges {
     if (!this.photos.length) return;
     let currentRowWidth = 0;
     let displayWidth = 0;
-    let rowPhotos: UnsplashPhoto[][] = [];
+    const rowPhotos: UnsplashPhoto[][] = [];
     let currentRowItems: UnsplashPhoto[] = [];
 
     this.sizeInfo.containerWidth = this.getCurrentContainerWidth();
