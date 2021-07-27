@@ -6,6 +6,6 @@ const routes: Routes = [{ path: 'gallery', component: GalleryComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

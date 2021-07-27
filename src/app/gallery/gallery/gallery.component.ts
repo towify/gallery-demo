@@ -5,7 +5,7 @@ import { UnsplashService } from '../../unsplash.service';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css'],
+  styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
   @ViewChild('photoList')
@@ -23,7 +23,7 @@ export class GalleryComponent implements OnInit {
     maxWidth: 300,
     height: 180,
     gapWidth: 10,
-    containerWidth: 0,
+    containerWidth: 0
   };
 
   #hasNextPage = true;
@@ -42,7 +42,8 @@ export class GalleryComponent implements OnInit {
   listPhotos(): void {
     this.isLoading = true;
     this.unsplashService.listPhotos(this.pageIndex).subscribe((photos) => {
-      if (photos.length === 0) this.#hasNextPage = false;
+      if (photos.length === 0)
+        this.#hasNextPage = false;
       this.photos = this.photos.concat(photos);
       this.isLoading = false;
       this.refresh();

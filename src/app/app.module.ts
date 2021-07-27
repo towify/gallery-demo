@@ -19,9 +19,9 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MatDialogModule,
     MatDividerModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

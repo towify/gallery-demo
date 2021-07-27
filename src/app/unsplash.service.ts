@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UnsplashPhoto } from './unsplash.photo';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UnsplashService {
   private readonly unsplashUrl: string =
@@ -16,7 +16,7 @@ export class UnsplashService {
   listPhotos(pageIndex: number): Observable<UnsplashPhoto[]> {
     return this.http
       .get<UnsplashPhoto[]>(this.unsplashUrl, {
-        params: { page: pageIndex, per_page: 20 },
+        params: { page: pageIndex, per_page: 20 }
       })
       .pipe(
         tap((_) => {
